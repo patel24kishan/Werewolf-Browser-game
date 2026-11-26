@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="62%" r="80%"><stop offset="0" stop-color="#fff4d2"/><stop offset="0.6" stop-color="#f0d590"/><stop offset="1" stop-color="#c99a4a"/></radialGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="19"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.1"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+    <clipPath id="inner"><rect x="48" y="48" width="904" height="904" rx="40"/></clipPath>
+    <path id="ray" d="M500 640 L452 -120 L548 -120 Z"/>
+    <ellipse id="leaf" cx="0" cy="0" rx="28" ry="11"/>
+  </defs>
+  <rect width="1000" height="1000" rx="90" fill="#141010"/>
+  <g clip-path="url(#inner)">
+    <rect x="48" y="48" width="904" height="904" fill="url(#bg)"/>
+    <!-- sunburst -->
+    <g fill="#ffffff" opacity="0.28">
+      <use href="#ray"/><use href="#ray" transform="rotate(30 500 640)"/><use href="#ray" transform="rotate(60 500 640)"/>
+      <use href="#ray" transform="rotate(90 500 640)"/><use href="#ray" transform="rotate(120 500 640)"/><use href="#ray" transform="rotate(150 500 640)"/>
+      <use href="#ray" transform="rotate(180 500 640)"/><use href="#ray" transform="rotate(210 500 640)"/><use href="#ray" transform="rotate(240 500 640)"/>
+      <use href="#ray" transform="rotate(270 500 640)"/><use href="#ray" transform="rotate(300 500 640)"/><use href="#ray" transform="rotate(330 500 640)"/>
+    </g>
+
+    <!-- ribbon -->
+    <g stroke="#141010" stroke-width="12" stroke-linejoin="round">
+      <path fill="#6a3ea1" d="M370 40 H630 V380 L500 460 L370 380 Z"/>
+      <path fill="#e8432f" d="M420 40 H580 V362 L500 412 L420 362 Z"/>
+      <path fill="#f2c94c" d="M476 40 H524 V340 L500 356 L476 340 Z"/>
+    </g>
+    <path d="M370 40 H500 V460 L370 380 Z" fill="#000" opacity="0.12"/>
+    <!-- ring -->
+    <circle cx="500" cy="452" r="26" fill="none" stroke="#141010" stroke-width="12"/>
+
+    <!-- laurel wreath -->
+    <g fill="none" stroke="#2c5a2a" stroke-width="9" stroke-linecap="round">
+      <path d="M330 810 A 240 240 0 0 1 330 470"/>
+      <path d="M670 810 A 240 240 0 0 0 670 470"/>
+    </g>
+    <g fill="#3f7d3a" stroke="#141010" stroke-width="5">
+      <use href="#leaf" transform="translate(318 800) rotate(-20)"/><use href="#leaf" transform="translate(342 830) rotate(40)"/>
+      <use href="#leaf" transform="translate(280 752) rotate(-40)"/><use href="#leaf" transform="translate(306 772) rotate(20)"/>
+      <use href="#leaf" transform="translate(256 696) rotate(-60)"/><use href="#leaf" transform="translate(282 708) rotate(0)"/>
+      <use href="#leaf" transform="translate(248 636) rotate(-80)"/><use href="#leaf" transform="translate(274 640) rotate(-20)"/>
+      <use href="#leaf" transform="translate(256 574) rotate(-100)"/><use href="#leaf" transform="translate(282 576) rotate(-40)"/>
+      <use href="#leaf" transform="translate(280 516) rotate(-120)"/><use href="#leaf" transform="translate(304 522) rotate(-60)"/>
+      <use href="#leaf" transform="translate(318 466) rotate(-130)"/>
+      <use href="#leaf" transform="translate(682 800) rotate(20)"/><use href="#leaf" transform="translate(658 830) rotate(-40)"/>
+      <use href="#leaf" transform="translate(720 752) rotate(40)"/><use href="#leaf" transform="translate(694 772) rotate(-20)"/>
+      <use href="#leaf" transform="translate(744 696) rotate(60)"/><use href="#leaf" transform="translate(718 708) rotate(0)"/>
+      <use href="#leaf" transform="translate(752 636) rotate(80)"/><use href="#leaf" transform="translate(726 640) rotate(20)"/>
+      <use href="#leaf" transform="translate(744 574) rotate(100)"/><use href="#leaf" transform="translate(718 576) rotate(40)"/>
+      <use href="#leaf" transform="translate(720 516) rotate(120)"/><use href="#leaf" transform="translate(696 522) rotate(60)"/>
+      <use href="#leaf" transform="translate(682 466) rotate(130)"/>
+    </g>
+
+    <!-- star badge with bevelled facets -->
+    <path fill="#141010" d="M500 418 L556 566 L714 572 L590 670 L634 822 L500 734 L366 822 L410 670 L286 572 L444 566 Z"/>
+    <g>
+      <path fill="#fbe07a" d="M500 640 L500 440 L548 574 Z"/>
+      <path fill="#d9a52a" d="M500 640 L500 440 L452 574 Z"/>
+      <path fill="#fbe07a" d="M500 640 L690 578 L578 665 Z"/>
+      <path fill="#d9a52a" d="M500 640 L690 578 L548 574 Z"/>
+      <path fill="#fbe07a" d="M500 640 L618 802 L500 722 Z"/>
+      <path fill="#d9a52a" d="M500 640 L618 802 L578 665 Z"/>
+      <path fill="#fbe07a" d="M500 640 L382 802 L422 665 Z"/>
+      <path fill="#d9a52a" d="M500 640 L382 802 L500 722 Z"/>
+      <path fill="#fbe07a" d="M500 640 L310 578 L452 574 Z"/>
+      <path fill="#d9a52a" d="M500 640 L310 578 L422 665 Z"/>
+    </g>
+    <!-- centre seal -->
+    <circle cx="500" cy="640" r="74" fill="#e8432f" stroke="#141010" stroke-width="12"/>
+    <circle cx="500" cy="640" r="50" fill="#6a3ea1"/>
+    <path fill="#fbe07a" d="M516 606 c-30 0 -52 22 -52 50 c0 28 22 50 52 50 c-16 -12 -26 -30 -26 -50 c0 -20 10 -38 26 -50 z"/>
+    <g fill="#fbe07a"><circle cx="530" cy="626" r="4"/><circle cx="540" cy="660" r="3"/></g>
+    <!-- studs on star tips -->
+    <g fill="#141010"><circle cx="500" cy="462" r="7"/><circle cx="668" cy="582" r="7"/><circle cx="606" cy="782" r="7"/><circle cx="394" cy="782" r="7"/><circle cx="332" cy="582" r="7"/></g>
+  </g>
+  <rect x="48" y="48" width="904" height="904" rx="40" fill="#000" opacity="0.1" filter="url(#grain)"/>
+</svg>

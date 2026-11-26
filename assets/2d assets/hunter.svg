@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <radialGradient id="bg" cx="70%" cy="45%" r="85%"><stop offset="0" stop-color="#d8cf68"/><stop offset="0.5" stop-color="#8f8a30"/><stop offset="1" stop-color="#3a3b12"/></radialGradient>
+    <radialGradient id="moon" cx="45%" cy="40%" r="60%"><stop offset="0" stop-color="#fff6d0"/><stop offset="1" stop-color="#efd88c"/></radialGradient>
+    <radialGradient id="mglow" cx="50%" cy="50%" r="50%"><stop offset="0.6" stop-color="#fff0b0" stop-opacity="0.45"/><stop offset="1" stop-color="#fff0b0" stop-opacity="0"/></radialGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="13"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.14"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+    <clipPath id="inner"><rect x="48" y="48" width="904" height="904" rx="40"/></clipPath>
+  </defs>
+  <rect width="1000" height="1000" rx="90" fill="#141010"/>
+  <g clip-path="url(#inner)">
+    <rect x="48" y="48" width="904" height="904" fill="url(#bg)"/>
+    <g fill="#fff6d0" opacity="0.8"><circle cx="140" cy="160" r="4"/><circle cx="260" cy="230" r="3"/><circle cx="420" cy="120" r="3"/><circle cx="560" cy="200" r="3"/><circle cx="110" cy="420" r="3"/></g>
+    <!-- moon -->
+    <circle cx="750" cy="470" r="240" fill="url(#mglow)"/>
+    <circle cx="750" cy="470" r="170" fill="url(#moon)"/>
+    <g fill="#dcc271" opacity="0.5"><circle cx="700" cy="420" r="24"/><circle cx="810" cy="400" r="14"/><circle cx="790" cy="500" r="10"/></g>
+    <!-- far ridge with the wolf -->
+    <path fill="#141010" d="M450 952 C490 820 540 700 610 652 C660 618 720 600 780 600 C860 604 910 624 952 640 L952 952 Z"/>
+    <!-- wolf standing on the ridge, facing the hunter -->
+    <g fill="#141010" transform="translate(660 502) scale(0.9)">
+      <path d="M0 30 L30 22 L40 0 L52 20 C70 25 90 30 120 32 C150 30 175 38 190 50 L215 40 C205 60 195 70 185 72 L180 110 L168 110 L165 78 C140 82 110 82 85 80 L80 110 L68 110 L62 76 C50 70 45 60 40 50 C30 48 15 44 0 38 Z"/>
+      <path d="M150 78 L152 110 L162 110 L160 78 Z M92 80 L96 110 L106 110 L102 80 Z"/>
+    </g>
+    <!-- crosshair on the wolf -->
+    <g fill="none" stroke="#b8322a" stroke-width="9">
+      <circle cx="755" cy="548" r="96"/>
+      <path d="M755 430 V500 M755 596 V666 M637 548 H707 M803 548 H873"/>
+    </g>
+    <circle cx="755" cy="548" r="7" fill="#b8322a"/>
+    <!-- near hill -->
+    <path fill="#22230a" d="M48 952 L48 812 C200 792 400 796 600 830 L640 952 Z"/>
+    <g fill="#22230a"><path d="M100 812 l6 -24 l6 24 z M126 808 l6 -16 l6 16 z M520 820 l6 -22 l6 22 z M548 826 l6 -16 l6 16 z"/></g>
+    <!-- kneeling hunter, aiming right -->
+    <g fill="#141010">
+      <circle cx="290" cy="522" r="34"/>
+      <ellipse cx="292" cy="494" rx="60" ry="11"/>
+      <path d="M262 494 L268 456 C280 448 305 448 318 456 L324 494 Z"/>
+      <path d="M255 555 C240 600 235 650 245 700 L330 705 C350 660 360 610 345 560 Z"/>
+      <path d="M245 690 L300 700 L262 815 L160 822 L165 800 L225 795 Z"/>
+      <path d="M300 690 L405 700 L420 822 L385 822 L378 735 L310 730 Z"/>
+      <path d="M290 562 L332 546 L348 586 L302 602 Z"/>
+      <path d="M318 566 L612 506" stroke="#141010" stroke-width="16" stroke-linecap="round"/>
+      <rect x="400" y="530" width="70" height="14" rx="6" transform="rotate(-11.5 435 537)"/>
+      <path d="M332 566 L428 548" stroke="#141010" stroke-width="24" stroke-linecap="round"/>
+      <path d="M330 580 L360 572" stroke="#141010" stroke-width="22" stroke-linecap="round"/>
+    </g>
+    <path d="M318 458 C308 430 316 410 334 400 C330 420 332 438 324 456 Z" fill="#b8322a"/>
+  </g>
+  <rect x="48" y="48" width="904" height="904" rx="40" fill="#000" opacity="0.16" filter="url(#grain)"/>
+</svg>

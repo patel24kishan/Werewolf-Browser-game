@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <radialGradient id="bg" cx="40%" cy="30%" r="85%"><stop offset="0" stop-color="#f4884a"/><stop offset="0.55" stop-color="#cf4f24"/><stop offset="1" stop-color="#6e1f0c"/></radialGradient>
+    <radialGradient id="moon" cx="45%" cy="40%" r="60%"><stop offset="0" stop-color="#fff4cc"/><stop offset="1" stop-color="#f6d58a"/></radialGradient>
+    <radialGradient id="mglow" cx="50%" cy="50%" r="50%"><stop offset="0.6" stop-color="#ffe0a0" stop-opacity="0.4"/><stop offset="1" stop-color="#ffe0a0" stop-opacity="0"/></radialGradient>
+    <radialGradient id="brew" cx="50%" cy="60%" r="50%"><stop offset="0" stop-color="#c8ff7a" stop-opacity="0.8"/><stop offset="1" stop-color="#8ee04a" stop-opacity="0"/></radialGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.12"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+    <clipPath id="inner"><rect x="48" y="48" width="904" height="904" rx="40"/></clipPath>
+  </defs>
+  <rect width="1000" height="1000" rx="90" fill="#141010"/>
+  <g clip-path="url(#inner)">
+    <rect x="48" y="48" width="904" height="904" fill="url(#bg)"/>
+    <!-- moon behind the hat -->
+    <circle cx="360" cy="250" r="230" fill="url(#mglow)"/>
+    <circle cx="360" cy="250" r="175" fill="url(#moon)"/>
+    <g fill="#e8c77c" opacity="0.5"><circle cx="300" cy="200" r="26"/><circle cx="430" cy="300" r="18"/><circle cx="410" cy="170" r="10"/></g>
+    <!-- stars -->
+    <g fill="#fff0c0"><circle cx="620" cy="110" r="3"/><circle cx="880" cy="160" r="4"/><circle cx="760" cy="420" r="3"/><circle cx="120" cy="520" r="3"/></g>
+
+    <!-- shelf with the two potions -->
+    <rect x="600" y="290" width="320" height="16" rx="4" fill="#141010"/>
+    <path d="M620 306 L640 340 L656 306 Z M880 306 L896 340 L912 306 Z" fill="#141010"/>
+    <!-- life potion -->
+    <rect x="674" y="186" width="32" height="14" rx="4" fill="#6b3a1c" stroke="#141010" stroke-width="5"/>
+    <rect x="679" y="198" width="22" height="30" fill="#141010"/>
+    <circle cx="690" cy="252" r="40" fill="#141010"/>
+    <circle cx="690" cy="254" r="31" fill="#8ee04a"/>
+    <path d="M690 270 c-14 -10 -22 -18 -22 -27 c0 -7 5 -12 11 -12 c5 0 9 3 11 7 c2 -4 6 -7 11 -7 c6 0 11 5 11 12 c0 9 -8 17 -22 27 z" fill="#fff4cc"/>
+    <!-- death potion -->
+    <rect x="796" y="162" width="28" height="14" rx="4" fill="#6b3a1c" stroke="#141010" stroke-width="5"/>
+    <rect x="800" y="174" width="20" height="40" fill="#141010"/>
+    <rect x="778" y="206" width="64" height="86" rx="14" fill="#141010"/>
+    <rect x="786" y="214" width="48" height="70" rx="9" fill="#8a4fd0"/>
+    <circle cx="810" cy="242" r="15" fill="#fff4cc"/><rect x="801" y="252" width="18" height="12" rx="3" fill="#fff4cc"/>
+    <circle cx="804" cy="241" r="4" fill="#8a4fd0"/><circle cx="816" cy="241" r="4" fill="#8a4fd0"/>
+
+    <!-- steam and bubbles from the brew -->
+    <ellipse cx="640" cy="600" rx="220" ry="140" fill="url(#brew)"/>
+    <g fill="none" stroke="#fff4cc" stroke-width="8" stroke-linecap="round" opacity="0.55">
+      <path d="M600 600 c-30 -40 20 -60 -10 -110 c-20 -34 10 -60 0 -90"/>
+      <path d="M690 600 c30 -40 -20 -70 10 -120 c16 -28 -6 -50 4 -74"/>
+    </g>
+    <g fill="#c8ff7a"><circle cx="590" cy="585" r="14"/><circle cx="650" cy="560" r="20"/><circle cx="700" cy="590" r="10"/><circle cx="620" cy="510" r="9"/><circle cx="680" cy="480" r="13"/><circle cx="645" cy="430" r="7"/></g>
+
+    <!-- floor -->
+    <rect x="48" y="850" width="904" height="110" fill="#2a0e09"/>
+    <g stroke="#141010" stroke-width="5" opacity="0.7"><path d="M48 890 H952"/><path d="M200 850 V890 M420 850 V890 M760 850 V890 M310 890 V952 M580 890 V952 M860 890 V952"/></g>
+
+    <!-- the witch: profile facing right, stirring -->
+    <g fill="#141010">
+      <!-- hair -->
+      <g fill="none" stroke="#141010" stroke-width="16" stroke-linecap="round">
+        <path d="M330 360 C300 400 300 440 275 490"/><path d="M345 365 C320 410 320 450 300 505"/>
+      </g>
+      <!-- hat -->
+      <path d="M290 330 L360 175 C350 150 330 130 300 125 C335 120 370 135 385 168 L430 330 Z"/>
+      <ellipse cx="360" cy="334" rx="128" ry="22"/>
+      <!-- face -->
+      <path d="M330 352 L415 352 L425 372 L470 396 L434 404 L430 420 L448 428 L420 440 L410 452 L330 452 Z"/>
+      <!-- cloak -->
+      <path d="M300 440 L410 440 C440 470 460 520 470 600 C480 690 490 770 500 852 L205 852 C222 750 244 645 265 560 C275 510 285 470 300 440 Z"/>
+      <!-- ladle -->
+      <path d="M465 500 L640 690" stroke="#141010" stroke-width="16" stroke-linecap="round"/>
+      <!-- arm and hand -->
+      <path d="M395 480 L510 565" stroke="#141010" stroke-width="46" stroke-linecap="round"/>
+      <circle cx="516" cy="566" r="24"/>
+    </g>
+    <!-- hat band -->
+    <path d="M298 312 L420 312 L426 326 L292 326 Z" fill="#8a4fd0"/>
+    <!-- eye -->
+    <circle cx="418" cy="378" r="5" fill="#fff4cc"/>
+
+    <!-- cauldron with fire -->
+    <g fill="#f8d84a"><path d="M580 852 c-10 -30 10 -50 20 -70 c4 24 20 30 14 70 z"/><path d="M630 852 c-14 -40 14 -66 24 -90 c6 34 26 44 16 90 z"/><path d="M690 852 c-10 -30 10 -50 20 -70 c4 24 20 30 14 70 z"/></g>
+    <g fill="#141010">
+      <path d="M545 820 L530 852 L572 852 Z M735 820 L750 852 L708 852 Z"/>
+      <path d="M505 650 C485 770 545 820 640 820 C735 820 795 770 775 650 Z"/>
+      <rect x="480" y="624" width="320" height="36" rx="18"/>
+    </g>
+    <ellipse cx="640" cy="642" rx="140" ry="15" fill="#8ee04a"/>
+    <path d="M520 700 C540 760 580 790 620 800" fill="none" stroke="#3a2a22" stroke-width="10" stroke-linecap="round" opacity="0.8"/>
+  </g>
+  <rect x="48" y="48" width="904" height="904" rx="40" fill="#000" opacity="0.14" filter="url(#grain)"/>
+</svg>

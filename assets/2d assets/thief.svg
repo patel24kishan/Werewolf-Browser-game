@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="80%"><stop offset="0" stop-color="#7fdca0"/><stop offset="0.5" stop-color="#2f8f57"/><stop offset="1" stop-color="#0f3a22"/></radialGradient>
+    <radialGradient id="moon" cx="45%" cy="40%" r="60%"><stop offset="0" stop-color="#fff6d0"/><stop offset="1" stop-color="#e8e0a0"/></radialGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="17"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.12"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+    <clipPath id="inner"><rect x="48" y="48" width="904" height="904" rx="40"/></clipPath>
+    <g id="card">
+      <rect x="-62" y="-82" width="124" height="164" rx="14" fill="#f2c94c" stroke="#101a14" stroke-width="10"/>
+      <rect x="-44" y="-64" width="88" height="128" rx="8" fill="none" stroke="#101a14" stroke-width="4" opacity="0.6"/>
+      <path d="M0 0 c0 -10 12 -14 18 -6 c8 12 -2 28 -18 28 c-22 0 -32 -26 -18 -42 c18 -20 52 -8 52 20" fill="none" stroke="#101a14" stroke-width="7" stroke-linecap="round"/>
+    </g>
+  </defs>
+  <rect width="1000" height="1000" rx="90" fill="#141010"/>
+  <g clip-path="url(#inner)">
+    <rect x="48" y="48" width="904" height="904" fill="url(#bg)"/>
+    <!-- moon and stars -->
+    <circle cx="790" cy="190" r="80" fill="url(#moon)"/>
+    <circle cx="820" cy="170" r="70" fill="#2f8f57" opacity="0.0"/>
+    <g fill="#fff6d0"><circle cx="160" cy="150" r="4"/><circle cx="260" cy="230" r="3"/><circle cx="660" cy="110" r="3"/><circle cx="900" cy="330" r="3"/><circle cx="120" cy="360" r="3"/></g>
+    <!-- rooftops behind -->
+    <path fill="#174a2d" d="M48 640 L48 520 L120 470 L190 520 L190 560 L250 560 L250 500 L300 460 L350 500 L350 640 Z"/>
+    <path fill="#174a2d" d="M650 640 L650 520 L700 480 L750 520 L750 470 L790 470 L790 520 L840 480 L900 530 L952 500 L952 640 Z"/>
+    <rect x="140" y="440" width="18" height="40" fill="#174a2d"/>
+    <g fill="#f2c94c" opacity="0.8"><rect x="96" y="540" width="16" height="20" rx="2"/><rect x="280" y="520" width="16" height="20" rx="2"/><rect x="690" y="540" width="16" height="20" rx="2"/><rect x="860" y="560" width="16" height="20" rx="2"/></g>
+
+    <!-- the thief, front-on -->
+    <path fill="#101a14" d="M170 952 L170 860 C190 740 290 660 400 640 L600 640 C710 660 810 740 830 860 L830 952 Z"/>
+    <path fill="#22382b" d="M400 640 L452 728 L500 662 L548 728 L600 640 Z"/>
+    <ellipse cx="500" cy="470" rx="110" ry="130" fill="#101a14"/>
+    <!-- bandana over lower face -->
+    <path fill="#22382b" d="M392 500 C430 520 570 520 608 500 C600 560 560 610 500 630 C440 610 400 560 392 500 Z"/>
+    <path d="M410 520 C460 540 540 540 590 520" fill="none" stroke="#101a14" stroke-width="5" opacity="0.6"/>
+    <!-- eye mask -->
+    <path fill="#22382b" d="M384 452 C420 430 470 432 500 446 C530 432 580 430 616 452 C610 484 570 494 540 482 C522 476 510 470 500 470 C490 470 478 476 460 482 C430 494 390 484 384 452 Z"/>
+    <g fill="#f2c94c">
+      <path d="M440 458 Q462 444 484 458 Q462 468 440 458 Z"/>
+      <path d="M516 458 Q538 444 560 458 Q538 468 516 458 Z"/>
+    </g>
+    <!-- flat cap -->
+    <path fill="#0b120e" d="M380 420 C380 330 440 300 500 300 C560 300 620 330 620 420 Z"/>
+    <path fill="#0b120e" d="M356 420 C420 398 580 398 644 420 C664 432 664 448 644 452 C580 432 420 432 356 452 C336 448 336 432 356 420 Z"/>
+    <path d="M400 360 C440 340 560 340 600 360" fill="none" stroke="#22382b" stroke-width="6"/>
+
+    <!-- swap arrows -->
+    <g fill="none" stroke="#fff6d0" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M360 760 Q500 840 640 760"/><path d="M640 760 L612 750 M640 760 L630 788"/>
+      <path d="M640 840 Q500 920 360 840"/><path d="M360 840 L388 850 M360 840 L370 812"/>
+    </g>
+    <!-- cards held up in gloved hands -->
+    <use href="#card" transform="translate(272 690) rotate(-16)"/>
+    <use href="#card" transform="translate(728 690) rotate(16)"/>
+    <g fill="#2e4a38" stroke="#101a14" stroke-width="6">
+      <ellipse cx="290" cy="770" rx="56" ry="38" transform="rotate(-16 290 770)"/>
+      <ellipse cx="710" cy="770" rx="56" ry="38" transform="rotate(16 710 770)"/>
+    </g>
+    <g fill="none" stroke="#2e4a38" stroke-width="16" stroke-linecap="round">
+      <path d="M262 752 L256 720"/><path d="M738 752 L744 720"/>
+    </g>
+  </g>
+  <rect x="48" y="48" width="904" height="904" rx="40" fill="#000" opacity="0.14" filter="url(#grain)"/>
+</svg>

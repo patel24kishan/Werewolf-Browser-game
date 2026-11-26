@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="58%" r="80%"><stop offset="0" stop-color="#a874ea"/><stop offset="0.5" stop-color="#6a3cb4"/><stop offset="1" stop-color="#2a124f"/></radialGradient>
+    <radialGradient id="ball" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff6d0"/><stop offset="0.55" stop-color="#f5c04a"/><stop offset="1" stop-color="#b8661a"/></radialGradient>
+    <radialGradient id="aura" cx="50%" cy="50%" r="50%"><stop offset="0.3" stop-color="#ffd76a" stop-opacity="0.55"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></radialGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="9"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.12"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+    <clipPath id="inner"><rect x="48" y="48" width="904" height="904" rx="40"/></clipPath>
+  </defs>
+  <rect width="1000" height="1000" rx="90" fill="#141010"/>
+  <g clip-path="url(#inner)">
+    <rect x="48" y="48" width="904" height="904" fill="url(#bg)"/>
+    <!-- stars and crescent -->
+    <g fill="#f6d27a">
+      <path d="M150 170 l9 26 l26 9 l-26 9 l-9 26 l-9 -26 l-26 -9 l26 -9 z"/>
+      <path d="M850 260 l7 20 l20 7 l-20 7 l-7 20 l-7 -20 l-20 -7 l20 -7 z"/>
+      <circle cx="240" cy="120" r="4"/><circle cx="800" cy="130" r="4"/><circle cx="880" cy="420" r="3"/><circle cx="110" cy="420" r="3"/><circle cx="700" cy="90" r="3"/>
+      <path d="M860 120 c-40 0 -66 30 -66 64 c0 34 26 64 66 64 c-20 -14 -32 -38 -32 -64 c0 -26 12 -50 32 -64 z"/>
+    </g>
+    <!-- hooded seer -->
+    <path fill="#1a0f2e" d="M500 140 C380 150 300 260 290 400 C280 520 250 650 200 830 L800 830 C750 650 720 520 710 400 C700 260 620 150 500 140 Z"/>
+    <path d="M500 140 C380 150 300 260 290 400" fill="none" stroke="#b58cf0" stroke-width="6" opacity="0.5" stroke-linecap="round"/>
+    <path d="M500 140 C620 150 700 260 710 400" fill="none" stroke="#b58cf0" stroke-width="6" opacity="0.35" stroke-linecap="round"/>
+    <ellipse cx="500" cy="335" rx="84" ry="108" fill="#07040d"/>
+    <ellipse cx="500" cy="335" rx="84" ry="108" fill="none" stroke="#3a2466" stroke-width="10"/>
+    <g fill="#f6c64a">
+      <path d="M450 332 Q470 316 490 332 Q470 342 450 332 Z"/>
+      <path d="M510 332 Q530 316 550 332 Q530 342 510 332 Z"/>
+    </g>
+    <!-- hood fold lines -->
+    <g fill="none" stroke="#2c1a4a" stroke-width="8" stroke-linecap="round">
+      <path d="M380 470 C360 580 330 700 300 820"/><path d="M620 470 C640 580 670 700 700 820"/>
+    </g>
+    <!-- table and cloth -->
+    <path fill="#2a1650" d="M140 730 L860 730 L900 952 L100 952 Z"/>
+    <rect x="140" y="722" width="720" height="18" rx="6" fill="#120a22"/>
+    <g fill="#f6d27a" opacity="0.5"><circle cx="260" cy="820" r="6"/><circle cx="380" cy="880" r="6"/><circle cx="620" cy="880" r="6"/><circle cx="740" cy="820" r="6"/><circle cx="500" cy="840" r="6"/></g>
+    <!-- glow -->
+    <circle cx="500" cy="590" r="260" fill="url(#aura)"/>
+    <!-- hands cupping the ball -->
+    <g fill="#5e3a9c" stroke="#120a22" stroke-width="6" stroke-linejoin="round">
+      <ellipse cx="362" cy="624" rx="50" ry="32" transform="rotate(-25 362 624)"/>
+      <ellipse cx="638" cy="624" rx="50" ry="32" transform="rotate(25 638 624)"/>
+    </g>
+    <g fill="none" stroke="#5e3a9c" stroke-width="18" stroke-linecap="round">
+      <path d="M378 600 L404 548"/><path d="M392 610 L422 562"/><path d="M400 624 L430 588"/>
+      <path d="M622 600 L596 548"/><path d="M608 610 L578 562"/><path d="M600 624 L570 588"/>
+    </g>
+    <!-- stand -->
+    <path fill="#120a22" d="M430 728 L570 728 L548 698 L452 698 Z"/>
+    <!-- crystal ball -->
+    <circle cx="500" cy="590" r="122" fill="url(#ball)" stroke="#120a22" stroke-width="10"/>
+    <path d="M420 590 Q500 530 580 590 Q500 650 420 590 Z" fill="#fff6d0" stroke="#120a22" stroke-width="8"/>
+    <circle cx="500" cy="590" r="30" fill="#6a3cb4"/>
+    <circle cx="500" cy="590" r="14" fill="#120a22"/>
+    <circle cx="490" cy="580" r="6" fill="#fff6d0"/>
+    <ellipse cx="455" cy="520" rx="34" ry="16" fill="#fff" opacity="0.55" transform="rotate(-30 455 520)"/>
+  </g>
+  <rect x="48" y="48" width="904" height="904" rx="40" fill="#000" opacity="0.15" filter="url(#grain)"/>
+</svg>

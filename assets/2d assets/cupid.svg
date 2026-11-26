@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <radialGradient id="bg" cx="55%" cy="40%" r="85%"><stop offset="0" stop-color="#8fd8f7"/><stop offset="0.6" stop-color="#3f97d4"/><stop offset="1" stop-color="#1a4f8a"/></radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0.2" stop-color="#ffd0e4" stop-opacity="0.7"/><stop offset="1" stop-color="#ffd0e4" stop-opacity="0"/></radialGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="11"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.12"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+    <clipPath id="inner"><rect x="48" y="48" width="904" height="904" rx="40"/></clipPath>
+  </defs>
+  <rect width="1000" height="1000" rx="90" fill="#141010"/>
+  <g clip-path="url(#inner)">
+    <rect x="48" y="48" width="904" height="904" fill="url(#bg)"/>
+    <!-- distant clouds -->
+    <g fill="#ffffff" opacity="0.55">
+      <path d="M600 230 a45 45 0 0 1 85 -20 a55 55 0 0 1 100 15 a38 38 0 0 1 45 45 h-250 a35 35 0 0 1 20 -40 z"/>
+      <path d="M90 250 a35 35 0 0 1 65 -15 a42 42 0 0 1 78 12 a30 30 0 0 1 35 35 h-195 a28 28 0 0 1 17 -32 z"/>
+    </g>
+    <!-- target: two hearts bound together -->
+    <circle cx="790" cy="470" r="160" fill="url(#glow)"/>
+    <g stroke="#1b2a4a" stroke-width="10" stroke-linejoin="round">
+      <path fill="#f48fb8" d="M840 560 c-60 -44 -100 -80 -100 -124 c0 -30 22 -50 50 -50 c22 0 40 12 50 30 c10 -18 28 -30 50 -30 c28 0 50 20 50 50 c0 44 -40 80 -100 124 z"/>
+      <path fill="#e8457a" d="M760 500 c-60 -44 -100 -80 -100 -124 c0 -30 22 -50 50 -50 c22 0 40 12 50 30 c10 -18 28 -30 50 -30 c28 0 50 20 50 50 c0 44 -40 80 -100 124 z"/>
+    </g>
+    <path d="M700 470 C760 520 820 470 880 510" fill="none" stroke="#fff4cc" stroke-width="8" stroke-dasharray="4 14" stroke-linecap="round"/>
+    <!-- cloud the cupid kneels on -->
+    <path fill="#ffffff" d="M100 720 C100 650 190 625 235 660 C255 600 360 590 400 640 C440 605 540 615 550 680 C615 670 660 715 635 760 L125 760 C90 760 80 728 100 720 Z"/>
+    <path fill="#d6ecfb" d="M125 760 L635 760 C640 745 630 735 615 732 C520 745 260 745 130 735 C110 740 110 755 125 760 Z"/>
+    <!-- wings -->
+    <g fill="#ffffff" stroke="#1b2a4a" stroke-width="10" stroke-linejoin="round">
+      <path d="M340 470 C300 380 220 330 140 340 C180 360 200 380 205 400 C170 400 150 415 140 440 C180 435 210 445 225 460 C195 470 180 490 178 515 C230 490 290 485 340 490 Z"/>
+    </g>
+    <g fill="none" stroke="#1b2a4a" stroke-width="5" stroke-linecap="round" opacity="0.6">
+      <path d="M320 455 C280 410 240 385 190 372"/><path d="M315 470 C270 445 230 430 180 430"/><path d="M315 482 C270 475 235 480 205 492"/>
+    </g>
+    <!-- cupid silhouette -->
+    <g fill="#1b2a4a">
+      <path d="M330 560 C300 600 300 632 332 642 L440 642 C456 622 442 592 420 576 Z"/>
+      <ellipse cx="380" cy="510" rx="62" ry="70"/>
+      <circle cx="395" cy="400" r="52"/>
+      <circle cx="360" cy="360" r="18"/><circle cx="390" cy="348" r="18"/><circle cx="422" cy="354" r="16"/><circle cx="444" cy="374" r="14"/><circle cx="348" cy="392" r="15"/>
+      <circle cx="448" cy="408" r="9"/>
+      <path d="M405 470 L522 470" stroke="#1b2a4a" stroke-width="26" stroke-linecap="round"/>
+      <path d="M395 478 L432 452" stroke="#1b2a4a" stroke-width="22" stroke-linecap="round"/>
+    </g>
+    <circle cx="420" cy="398" r="5" fill="#fff4cc"/>
+    <!-- bow, string and arrow -->
+    <path d="M520 318 C610 390 610 550 520 622" fill="none" stroke="#1b2a4a" stroke-width="15" stroke-linecap="round"/>
+    <path d="M520 318 L432 454 L520 622" fill="none" stroke="#fff4cc" stroke-width="4"/>
+    <path d="M432 454 L688 454" stroke="#1b2a4a" stroke-width="9" stroke-linecap="round"/>
+    <path d="M432 454 L452 436 L478 436 L458 454 L478 472 L452 472 Z" fill="#fff4cc" stroke="#1b2a4a" stroke-width="5"/>
+    <path d="M712 454 c-18 -10 -30 -20 -30 -32 c0 -8 6 -14 14 -14 c6 0 12 4 16 10 c4 -6 10 -10 16 -10 c8 0 14 6 14 14 c0 12 -12 22 -30 32 z" transform="rotate(90 712 438)" fill="#e8457a" stroke="#1b2a4a" stroke-width="5"/>
+    <!-- floating hearts -->
+    <g fill="#f48fb8" stroke="#1b2a4a" stroke-width="5">
+      <path d="M200 600 c-20 -15 -32 -27 -32 -41 c0 -10 7 -16 16 -16 c7 0 13 4 16 10 c3 -6 9 -10 16 -10 c9 0 16 6 16 16 c0 14 -12 26 -32 41 z"/>
+      <path d="M640 260 c-14 -11 -24 -20 -24 -30 c0 -7 5 -12 12 -12 c5 0 10 3 12 7 c2 -4 7 -7 12 -7 c7 0 12 5 12 12 c0 10 -10 19 -24 30 z"/>
+    </g>
+  </g>
+  <rect x="48" y="48" width="904" height="904" rx="40" fill="#000" opacity="0.12" filter="url(#grain)"/>
+</svg>

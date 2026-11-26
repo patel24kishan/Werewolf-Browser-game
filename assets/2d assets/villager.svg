@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3a33a"/><stop offset="0.6" stop-color="#f9d76a"/><stop offset="1" stop-color="#f6c24a"/></linearGradient>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff7d6"/><stop offset="0.55" stop-color="#ffe58f"/><stop offset="1" stop-color="#ffe58f" stop-opacity="0"/></radialGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.12"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+    <clipPath id="inner"><rect x="48" y="48" width="904" height="904" rx="40"/></clipPath>
+  </defs>
+  <rect width="1000" height="1000" rx="90" fill="#141010"/>
+  <g clip-path="url(#inner)">
+    <rect x="48" y="48" width="904" height="904" fill="url(#bg)"/>
+    <!-- setting sun -->
+    <circle cx="500" cy="560" r="320" fill="url(#sun)"/>
+    <!-- birds -->
+    <g fill="none" stroke="#5a3612" stroke-width="7" stroke-linecap="round">
+      <path d="M200 200 q18 -16 36 0 q18 -16 36 0"/><path d="M300 150 q14 -12 28 0 q14 -12 28 0"/><path d="M720 190 q16 -14 32 0 q16 -14 32 0"/>
+    </g>
+    <!-- village skyline -->
+    <path fill="#7a4a1a" d="M48 720 L48 600 L110 560 L170 600 L170 580 L230 530 L290 580 L290 620 L330 620 L330 560 L380 520 L430 560 L430 600 L470 600 L470 470 L500 380 L530 470 L530 600 L570 600 L570 560 L630 510 L690 560 L690 600 L740 600 L740 570 L800 520 L860 570 L860 610 L952 590 L952 720 Z"/>
+    <path d="M500 340 V390 M486 356 H514" stroke="#7a4a1a" stroke-width="7"/>
+    <rect x="200" y="545" width="14" height="40" fill="#7a4a1a"/><rect x="770" y="535" width="14" height="40" fill="#7a4a1a"/>
+    <g fill="#ffe58f"><rect x="122" y="612" width="16" height="22" rx="2"/><rect x="242" y="596" width="16" height="22" rx="2"/><rect x="388" y="578" width="14" height="20" rx="2"/><rect x="632" y="572" width="16" height="22" rx="2"/><rect x="808" y="586" width="16" height="22" rx="2"/><circle cx="500" cy="520" r="13"/></g>
+    <!-- foreground hill -->
+    <path fill="#2b1a0c" d="M48 952 L48 790 C250 755 750 755 952 790 L952 952 Z"/>
+    <g fill="#2b1a0c"><path d="M120 790 l8 -26 l6 26 z M150 785 l6 -20 l6 20 z M840 786 l8 -24 l6 24 z M870 790 l6 -18 l6 18 z"/></g>
+
+    <!-- villagers -->
+    <g fill="#1a0f08">
+      <!-- farmer with pitchfork -->
+      <circle cx="330" cy="560" r="34"/>
+      <ellipse cx="330" cy="532" rx="54" ry="10"/>
+      <rect x="305" y="498" width="50" height="36" rx="8"/>
+      <rect x="320" y="588" width="20" height="16"/>
+      <path d="M290 600 L370 600 C385 640 388 690 382 730 L372 800 L346 800 L340 735 L322 735 L314 800 L288 800 L280 730 C274 690 276 640 290 600 Z"/>
+      <path d="M365 615 L402 652" stroke="#1a0f08" stroke-width="22" stroke-linecap="round"/>
+      <path d="M404 470 V800" stroke="#1a0f08" stroke-width="10"/>
+      <path d="M382 474 H426 M382 474 V418 M404 474 V408 M426 474 V418" stroke="#1a0f08" stroke-width="8" fill="none"/>
+      <!-- mother with basket -->
+      <circle cx="500" cy="590" r="30"/>
+      <path d="M468 594 C466 552 534 552 532 594 L542 612 L458 612 Z"/>
+      <path d="M470 625 L530 625 C545 660 560 730 575 800 L425 800 C440 730 455 660 470 625 Z"/>
+      <path d="M472 640 L448 690" stroke="#1a0f08" stroke-width="18" stroke-linecap="round"/>
+      <path d="M418 690 L478 690 L468 730 L428 730 Z"/>
+      <path d="M424 690 C424 660 472 660 472 690" fill="none" stroke="#1a0f08" stroke-width="6"/>
+      <path d="M528 640 L600 700" stroke="#1a0f08" stroke-width="18" stroke-linecap="round"/>
+      <!-- child -->
+      <circle cx="628" cy="662" r="24"/>
+      <path d="M608 688 L648 688 L656 740 L650 800 L634 800 L630 762 L626 762 L622 800 L606 800 L600 740 Z"/>
+      <path d="M610 700 L600 702" stroke="#1a0f08" stroke-width="14" stroke-linecap="round"/>
+    </g>
+    <!-- basket goods -->
+    <g fill="#e8432f"><circle cx="436" cy="688" r="8"/><circle cx="452" cy="684" r="8"/><circle cx="466" cy="690" r="7"/></g>
+  </g>
+  <rect x="48" y="48" width="904" height="904" rx="40" fill="#000" opacity="0.13" filter="url(#grain)"/>
+</svg>

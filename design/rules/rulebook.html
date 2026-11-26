@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f0c1d">
+<title>Werewolf — Rules of the Village</title>
+<style>
+  :root{
+    --night:#0f0c1d; --night-2:#1a1530; --night-3:#251e44;
+    --parch:#f6ecd2; --parch-2:#e9dab3; --ink:#2a1f14; --ink-soft:#5c4a36;
+    --gold:#f2c94c; --blood:#b8322a; --moon:#f6e7a2; --village:#3f7d3a; --wolf:#8a2e1d;
+    --radius:18px; --gap:clamp(14px,4vw,22px);
+    --serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:64px}
+  body{margin:0;background:var(--night);color:var(--parch);font:16px/1.55 var(--sans);-webkit-text-size-adjust:100%}
+  img{display:block;max-width:100%}
+  a{color:var(--gold)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 var(--gap)}
+
+  /* cover */
+  .cover{position:relative;text-align:center;padding:40px var(--gap) 32px;
+    background:radial-gradient(120% 80% at 50% 20%,#2e2560 0%,var(--night) 70%)}
+  .cover img{width:min(62vw,300px);margin:0 auto 18px;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.6)}
+  .cover h1{font:700 clamp(30px,8vw,46px)/1.05 var(--serif);letter-spacing:.06em;margin:0;color:var(--gold)}
+  .cover p{margin:10px auto 0;max-width:34ch;color:#cfc5e6}
+  .pills{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px}
+  .pill{font-size:13px;padding:6px 12px;border-radius:999px;background:var(--night-3);color:var(--moon)}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:5;background:rgba(15,12,29,.92);backdrop-filter:blur(8px);border-bottom:1px solid #2c2550}
+  nav .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none}
+  nav a{flex:0 0 auto;text-decoration:none;color:var(--parch);font-size:14px;padding:8px 14px;border-radius:999px;background:var(--night-2);min-height:36px;display:flex;align-items:center}
+  nav a:active{background:var(--night-3)}
+
+  section{padding:34px 0 8px}
+  h2{font:700 clamp(24px,6vw,32px)/1.15 var(--serif);color:var(--gold);margin:0 0 6px}
+  h2 small{display:block;font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#9c90c4;margin-bottom:8px}
+  h3{font:700 20px/1.2 var(--serif);margin:0 0 6px}
+  .lead{color:#d6cdea;margin:0 0 18px}
+
+  /* parchment panel */
+  .panel{background:linear-gradient(180deg,var(--parch),var(--parch-2));color:var(--ink);border-radius:var(--radius);padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.35);margin-bottom:14px}
+  .panel p{margin:.4em 0}
+  .panel h3{color:var(--wolf)}
+
+  /* teams */
+  .teams{display:grid;gap:12px;grid-template-columns:1fr}
+  @media(min-width:560px){.teams{grid-template-columns:1fr 1fr}}
+  .team{border-radius:var(--radius);padding:16px;color:var(--parch)}
+  .team.village{background:linear-gradient(160deg,#2d5a2a,#1b3a1a)}
+  .team.wolves{background:linear-gradient(160deg,#8a2e1d,#4a160d)}
+  .team h3{color:var(--moon)}
+
+  /* roles */
+  .roles{display:grid;gap:14px}
+  .role{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start;background:var(--night-2);border-radius:var(--radius);padding:12px;border:1px solid #2c2550}
+  .role img{width:96px;height:96px;border-radius:14px}
+  .role h3{color:var(--moon);display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+  .tag{font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:999px}
+  .tag.v{background:#24401f;color:#b9e3a6}.tag.w{background:#4a160d;color:#f3b19f}.tag.t{background:#3d3214;color:#f2dc8e}
+  .role p{margin:.3em 0;color:#e6dff4}
+  .tip{font-size:14px;color:#b9aedb;border-left:3px solid var(--gold);padding-left:10px;margin-top:8px}
+
+  /* tables */
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  th,td{padding:8px 6px;text-align:center;border-bottom:1px solid rgba(42,31,20,.18)}
+  th{font:700 12px/1.2 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+  td:first-child,th:first-child{text-align:left}
+  tbody tr:nth-child(odd){background:rgba(255,255,255,.35)}
+  .wolfnum{color:var(--wolf);font-weight:700}
+
+  /* timeline */
+  .phase{border-radius:var(--radius);padding:16px;margin-bottom:14px}
+  .phase.night{background:linear-gradient(180deg,#1d2a66,#141a40)}
+  .phase.first{background:linear-gradient(180deg,#3d2160,#1f1235)}
+  .phase.day{background:linear-gradient(180deg,#f9d76a,#f3a33a);color:var(--ink)}
+  .phase h3{display:flex;align-items:center;gap:10px}
+  .phase.day h3{color:#5a2a0c}.phase.night h3,.phase.first h3{color:var(--moon)}
+  ol.steps{list-style:none;margin:10px 0 0;padding:0;counter-reset:s}
+  ol.steps li{position:relative;padding:10px 0 10px 46px;border-top:1px solid rgba(255,255,255,.12)}
+  .phase.day ol.steps li{border-top-color:rgba(42,31,20,.15)}
+  ol.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:10px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:700 15px var(--serif);background:var(--gold);color:var(--ink)}
+  ol.steps li b{display:block}
+  .phase.first ol.steps li::before{content:attr(data-k)}
+  .icon{width:34px;height:34px;border-radius:9px;flex:0 0 auto}
+
+  /* win */
+  .wins{display:grid;gap:12px}
+  .win{display:flex;gap:14px;align-items:center;padding:14px;border-radius:var(--radius);background:var(--night-2);border:1px solid #2c2550}
+  .win img{width:64px;height:64px;border-radius:12px;flex:0 0 auto}
+  .win p{margin:0}
+
+  details{background:var(--night-2);border:1px solid #2c2550;border-radius:14px;margin-bottom:10px}
+  summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;min-height:44px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"＋";float:right;color:var(--gold)}
+  details[open] summary::after{content:"－"}
+  details ul{margin:0;padding:0 16px 14px 34px;color:#d6cdea}
+  details li{margin:.35em 0}
+  .proposed{font:600 10px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;background:#3d3214;color:#f2dc8e;padding:3px 6px;border-radius:6px;margin-left:4px;vertical-align:middle}
+
+  blockquote{margin:0 0 10px;padding:12px 14px;border-radius:12px;background:var(--night-2);border-left:3px solid var(--gold);font:italic 17px/1.45 var(--serif);color:var(--moon)}
+  blockquote cite{display:block;font:600 12px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:#9c90c4;margin-bottom:6px;font-style:normal}
+  footer{padding:30px var(--gap) 50px;text-align:center;color:#7e74a6;font-size:13px}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <img src="../../assets/2d%20assets/card-back.svg" alt="Card back: a wolf howling at a full moon">
+  <h1>WEREWOLF</h1>
+  <p>Wolves are hiding among the villagers. Each night someone dies. Each day the village votes. Who do you trust?</p>
+  <div class="pills"><span class="pill">5–18 players</span><span class="pill">15–30 min</span><span class="pill">Ages 10+</span></div>
+</header>
+
+<nav aria-label="Sections"><div class="wrap">
+  <a href="#goal">Goal</a><a href="#roles">Roles</a><a href="#setup">Setup</a><a href="#flow">How to play</a><a href="#win">Winning</a><a href="#rulings">Rulings</a><a href="#mood">Atmosphere</a>
+</div></nav>
+
+<main class="wrap">
+
+<section id="goal">
+  <h2><small>Chapter 1</small>The two sides</h2>
+  <p class="lead">Every player secretly gets a role. Nobody's card is shown until they are out, so anyone can lie about who they are.</p>
+  <div class="teams">
+    <div class="team village"><h3>The Village</h3><p>Simple Villagers plus every special role. You win when <b>every werewolf is dead</b> and at least one villager still lives.</p></div>
+    <div class="team wolves"><h3>The Werewolves</h3><p>One to four hidden killers. You win when <b>the last villager dies</b> and at least one wolf still lives.</p></div>
+  </div>
+  <p class="lead" style="margin-top:14px">Dead players still win if their side wins.</p>
+</section>
+
+<section id="roles">
+  <h2><small>Chapter 2</small>The roles</h2>
+  <p class="lead">Start with Werewolves, one Seer and Villagers. Add the others a game or two later.</p>
+  <div class="roles">
+    <article class="role"><img src="../../assets/2d%20assets/werewolf.svg" alt=""><div>
+      <h3>Werewolf <span class="tag w">Werewolves</span></h3>
+      <p>Each night the wolves wake together and pick one victim, any living player, even a fellow wolf. The player with the most wolf picks dies. A tie means nobody dies. By day they pretend to be villagers.</p>
+      <p class="tip">Voting against a fellow wolf can clear your name, if the village notices.</p></div></article>
+
+    <article class="role"><img src="../../assets/2d%20assets/villager.svg" alt=""><div>
+      <h3>Simple Villager <span class="tag v">Village</span></h3>
+      <p>No power but your own judgement. Read the room, find the wolves, and don't get mistaken for one.</p></div></article>
+
+    <article class="role"><img src="../../assets/2d%20assets/seer.svg" alt=""><div>
+      <h3>Seer <span class="tag v">Village</span></h3>
+      <p>Each night, secretly learn one player's true role.</p>
+      <p class="tip">Found a wolf? Revealing yourself can expose them, but do it too early and you're next.</p></div></article>
+
+    <article class="role"><img src="../../assets/2d%20assets/witch.svg" alt=""><div>
+      <h3>Witch <span class="tag v">Village</span></h3>
+      <p>Each night you see the wolves' victim. You have one <b>healing potion</b> to save them and one <b>poison</b> to kill anyone, each usable once per game. You can use one, both, or neither in a night, even on yourself.</p>
+      <p class="tip">You get stronger late in the game. Don't waste your potions.</p></div></article>
+
+    <article class="role"><img src="../../assets/2d%20assets/hunter.svg" alt=""><div>
+      <h3>Hunter <span class="tag v">Village</span></h3>
+      <p>However you are eliminated, by wolves, vote, poison or grief, you immediately shoot one other player, who dies too.</p>
+      <p class="tip">Stay hidden. Wolves who know won't give you a target.</p></div></article>
+
+    <article class="role"><img src="../../assets/2d%20assets/cupid.svg" alt=""><div>
+      <h3>Cupid <span class="tag v">Village</span></h3>
+      <p>On the first night, choose two lovers, possibly yourself. If one lover dies, the other dies of grief. Lovers can never vote against each other. A wolf and a villager in love win only as the last two alive.</p>
+      <p class="tip">If you choose yourself, don't pick a loudmouth.</p></div></article>
+
+    <article class="role"><img src="../../assets/2d%20assets/little-girl.svg" alt=""><div>
+      <h3>Little Girl <span class="tag v">Village</span></h3>
+      <p>While the wolves hunt, you may peek to see who they are. If they catch you, you die instead of their victim.</p>
+      <p class="tip">Peek early, or you may die knowing nothing.</p></div></article>
+
+    <article class="role"><img src="../../assets/2d%20assets/thief.svg" alt=""><div>
+      <h3>Thief <span class="tag v">Village</span></h3>
+      <p>Two extra Villager cards go in the deck, and two cards are left over. On the first night you may swap your card for one of them. If both are Werewolves you must take one. You become that role.</p></div></article>
+
+    <article class="role"><img src="../../assets/2d%20assets/sheriff.svg" alt=""><div>
+      <h3>Sheriff <span class="tag t">A title</span></h3>
+      <p>Not dealt. The village elects a Sheriff on the first day, and the winner can't refuse. The Sheriff's vote counts <b>twice</b>, always on one player. When the Sheriff dies, they name a successor.</p>
+      <p class="tip">Run for it. As a wolf, don't campaign too hard.</p></div></article>
+  </div>
+</section>
+
+<section id="setup">
+  <h2><small>Chapter 3</small>Setup</h2>
+  <p class="lead">Each special role replaces one Villager. The Thief adds two extra Villagers to the deck. Rows 5–7 are our small-lobby mix and are still being tuned.</p>
+  <div class="panel">
+    <table>
+      <thead><tr><th>Players</th><th>Wolves</th><th>Seer</th><th>Villagers</th></tr></thead>
+      <tbody>
+        <tr><td>5</td><td class="wolfnum">1</td><td>1</td><td>3</td></tr>
+        <tr><td>6</td><td class="wolfnum">1</td><td>1</td><td>4</td></tr>
+        <tr><td>7</td><td class="wolfnum">2</td><td>1</td><td>4</td></tr>
+        <tr><td>8</td><td class="wolfnum">2</td><td>1</td><td>5</td></tr>
+        <tr><td>9</td><td class="wolfnum">2</td><td>1</td><td>6</td></tr>
+        <tr><td>10</td><td class="wolfnum">2</td><td>1</td><td>7</td></tr>
+        <tr><td>11</td><td class="wolfnum">2</td><td>1</td><td>8</td></tr>
+        <tr><td>12</td><td class="wolfnum">3</td><td>1</td><td>8</td></tr>
+        <tr><td>13</td><td class="wolfnum">3</td><td>1</td><td>9</td></tr>
+        <tr><td>14</td><td class="wolfnum">3</td><td>1</td><td>10</td></tr>
+        <tr><td>15</td><td class="wolfnum">3</td><td>1</td><td>11</td></tr>
+        <tr><td>16</td><td class="wolfnum">3</td><td>1</td><td>12</td></tr>
+        <tr><td>17</td><td class="wolfnum">3</td><td>1</td><td>13</td></tr>
+        <tr><td>18</td><td class="wolfnum">4</td><td>1</td><td>13</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="flow">
+  <h2><small>Chapter 4</small>How to play</h2>
+  <p class="lead">Night and day alternate until one side wins. Nothing that happens at night is revealed until dawn.</p>
+
+  <div class="phase first">
+    <h3><img class="icon" src="../../assets/2d%20assets/cupid.svg" alt="">First night only</h3>
+    <ol class="steps">
+      <li data-k="A"><b>Thief</b>looks at the two leftover cards and may swap.</li>
+      <li data-k="B"><b>Cupid</b>chooses the two lovers.</li>
+      <li data-k="C"><b>The lovers</b>wake, see each other, and sleep. They don't see each other's roles.</li>
+    </ol>
+  </div>
+
+  <div class="phase night">
+    <h3><img class="icon" src="../../assets/2d%20assets/werewolf.svg" alt="">Every night</h3>
+    <ol class="steps">
+      <li><b>Seer</b>secretly learns one player's role.</li>
+      <li><b>Werewolves</b>choose a victim. The Little Girl may peek, and dies instead if caught.</li>
+      <li><b>Witch</b>sees the victim and may heal them, poison anyone, both, or neither.</li>
+    </ol>
+  </div>
+
+  <div class="phase day">
+    <h3><img class="icon" src="../../assets/2d%20assets/villager.svg" alt="">Every day</h3>
+    <ol class="steps">
+      <li><b>Dawn</b>The night's dead are revealed and fall silent. A dead Hunter shoots, a lover follows their partner, and a dead Sheriff names a successor.</li>
+      <li><b>Sheriff election</b>First day only.</li>
+      <li><b>Debate</b>Accuse, defend, bluff. Anyone may claim any role.</li>
+      <li><b>Vote</b>Everyone points at once. The Sheriff counts double. The most votes is eliminated. <b style="display:inline">A tie eliminates nobody.</b></li>
+      <li><b>Night falls</b>Back to the Seer.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="win">
+  <h2><small>Chapter 5</small>Winning</h2>
+  <div class="wins">
+    <div class="win"><img src="../../assets/2d%20assets/villager.svg" alt=""><p><b>The Village wins</b> when every werewolf is dead and at least one villager lives.</p></div>
+    <div class="win"><img src="../../assets/2d%20assets/werewolf.svg" alt=""><p><b>The Werewolves win</b> when the last villager dies and at least one wolf lives.</p></div>
+    <div class="win"><img src="../../assets/2d%20assets/cupid.svg" alt=""><p><b>Mixed lovers win</b>, one wolf and one villager, only if they are the last two alive. While they live, neither team can win.</p></div>
+  </div>
+</section>
+
+<section id="rulings">
+  <h2><small>Chapter 6</small>Rulings</h2>
+  <p class="lead">How overlapping powers resolve. <span class="proposed">Proposed</span> marks our rulings for cases the original rules leave open.</p>
+  <details><summary>Deaths and chain reactions</summary><ul>
+    <li>A lover who dies takes their partner with them.</li>
+    <li>A Hunter shot that hits a lover kills both lovers.</li>
+    <li>A Hunter who dies of grief or poison still shoots.</li>
+    <li>The Sheriff names a successor when their death is revealed. <span class="proposed">Proposed</span></li>
+    <li>The game checks for a winner after each chain is fully resolved.</li>
+  </ul></details>
+  <details><summary>The night</summary><ul>
+    <li>The most wolf picks decides the victim. A tie or no picks kills nobody.</li>
+    <li>Wolves may target anyone, even another wolf.</li>
+    <li>A caught Little Girl dies, and the wolves' chosen victim survives.</li>
+    <li>The Witch can use both potions in one night, or use them on herself.</li>
+    <li>The Seer sees a Thief's new role, not "Thief".</li>
+  </ul></details>
+  <details><summary>The vote</summary><ul>
+    <li>A tie eliminates nobody.</li>
+    <li>The Sheriff's two votes always go to one player.</li>
+    <li>Lovers can't vote for each other.</li>
+    <li>A player who doesn't vote in time casts no vote. <span class="proposed">Proposed</span></li>
+    <li>A tied Sheriff election goes to a runoff, then a random pick.</li>
+  </ul></details>
+  <details><summary>Thief and lovers</summary><ul>
+    <li>A Thief who takes Cupid acts as Cupid that same night. <span class="proposed">Proposed</span></li>
+    <li>The card the Thief gives up leaves the game unseen. <span class="proposed">Proposed</span></li>
+    <li>Lovers on the same team keep their team's goal.</li>
+  </ul></details>
+</section>
+
+<section id="mood">
+  <h2><small>Chapter 7</small>Atmosphere</h2>
+  <p class="lead">The narrator makes the game. Build dread, hold back the reveal, and stir the argument when it dies down.</p>
+  <blockquote><cite>Night falls</cite>The lamps go out across the village. Close your eyes… and pray the night is quiet.</blockquote>
+  <blockquote><cite>Werewolves wake</cite>Werewolves, wake. Find your pack… and choose your prey.</blockquote>
+  <blockquote><cite>Dawn</cite>The sun rises. Everyone wakes… except one.</blockquote>
+  <blockquote><cite>The vote</cite>Enough talk. On my word, point to the one you believe is the beast.</blockquote>
+</section>
+
+</main>
+<footer>Rules reference for our game · Full detail in design/rules/*.md</footer>
+</body>
+</html>
