@@ -176,3 +176,29 @@ $RECYCLE.BIN/
 
 # Photos of the published rulebook and cards (publisher-owned). Kept local only.
 references/
+
+# ---------------------------------------------------------------------------
+# Claude Code Game Studios framework files.
+# Kept on disk so the studio tooling works locally; not part of this repo.
+# Framework updates come from the "template" remote (see UPGRADING.md).
+# ---------------------------------------------------------------------------
+/.claude/
+/.github/
+/.worktreeinclude
+/CHANGELOG.md
+/CLAUDE.md
+/CONTRIBUTING.md
+/LICENSE
+/README.md
+/SECURITY.md
+/UPGRADING.md
+/docs/
+/studio-tests/
+/project.yaml
+/design/CLAUDE.md
+/design/registry/
+/production/.gdignore
+/production/session-state/
+/production/stage.txt
+/src/CLAUDE.md
+/src/.gitkeep
