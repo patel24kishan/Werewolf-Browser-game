@@ -201,3 +201,11 @@ references/
 /production/stage.txt
 /src/CLAUDE.md
 /src/.gitkeep
+
+# Next.js app
+.next/
+next-env.d.ts
+/public/cards/
+/test-results/
+/playwright-report/
+*.tsbuildinfo

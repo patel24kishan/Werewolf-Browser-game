@@ -1,0 +1,7 @@
+{
+  "thiefExtraVillagers": 2,
+  "nameMinLength": 1,
+  "nameMaxLength": 12,
+  "defaultPlayerCount": 8,
+  "defaultSheriffOn": true
+}

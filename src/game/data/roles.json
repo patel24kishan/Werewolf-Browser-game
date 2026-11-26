@@ -1,0 +1,74 @@
+{
+  "werewolf": {
+    "name": "Werewolf",
+    "power": "Each night, wakes with the other werewolves and agrees on one player to kill.",
+    "art": "werewolf.svg",
+    "team": "wolves",
+    "dealt": true,
+    "special": false
+  },
+  "villager": {
+    "name": "Simple Villager",
+    "power": "No special power: use your judgement to find the werewolves.",
+    "art": "villager.svg",
+    "team": "village",
+    "dealt": true,
+    "special": false
+  },
+  "seer": {
+    "name": "Seer",
+    "power": "Each night, secretly learns the true role of one player.",
+    "art": "seer.svg",
+    "team": "village",
+    "dealt": true,
+    "special": false
+  },
+  "witch": {
+    "name": "Witch",
+    "power": "Has one healing potion and one poison potion, each usable once per game at night.",
+    "art": "witch.svg",
+    "team": "village",
+    "dealt": true,
+    "special": true
+  },
+  "hunter": {
+    "name": "Hunter",
+    "power": "When eliminated, immediately shoots one other player, who is eliminated too.",
+    "art": "hunter.svg",
+    "team": "village",
+    "dealt": true,
+    "special": true
+  },
+  "cupid": {
+    "name": "Cupid",
+    "power": "On the first night, makes two players lovers: if one dies, the other dies of grief.",
+    "art": "cupid.svg",
+    "team": "village",
+    "dealt": true,
+    "special": true
+  },
+  "little-girl": {
+    "name": "Little Girl",
+    "power": "May peek during the werewolves' turn, but dies instead of their victim if caught.",
+    "art": "little-girl.svg",
+    "team": "village",
+    "dealt": true,
+    "special": true
+  },
+  "thief": {
+    "name": "Thief",
+    "power": "On the first night, may swap their card for one of the two leftover cards.",
+    "art": "thief.svg",
+    "team": "village",
+    "dealt": true,
+    "special": true
+  },
+  "sheriff": {
+    "name": "Sheriff",
+    "power": "An elected title: the Sheriff's vote counts as two, and passes to a named successor.",
+    "art": "sheriff.svg",
+    "team": "none",
+    "dealt": false,
+    "special": false
+  }
+}
