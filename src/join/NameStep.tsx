@@ -14,16 +14,18 @@ export interface NameStepProps {
   disabled?: boolean;
   /** A problem with the game itself (missing, already started), shown above the field. */
   notice?: string | null;
+  /** True while signing in and loading the room: Join shows "Connecting…" and is off. */
+  connecting?: boolean;
 }
 
 /** "What's your name?": one input and "Join the village". */
-export function NameStep({ code, onJoin, onBack, disabled = false, notice = null }: NameStepProps) {
+export function NameStep({ code, onJoin, onBack, disabled = false, notice = null, connecting = false }: NameStepProps) {
   const [name, setName] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
   async function submit() {
-    if (busy || disabled) return;
+    if (busy || disabled || connecting) return;
     setBusy(true);
     setError(null);
     try {
@@ -37,7 +39,13 @@ export function NameStep({ code, onJoin, onBack, disabled = false, notice = null
   return (
     <PageShell
       footer={
-        <Button type="submit" form="join-name-form" busy={busy} busyLabel="Joining…" disabled={disabled}>
+        <Button
+          type="submit"
+          form="join-name-form"
+          busy={busy || connecting}
+          busyLabel={connecting ? 'Connecting…' : 'Joining…'}
+          disabled={disabled || connecting}
+        >
           Join the village
         </Button>
       }

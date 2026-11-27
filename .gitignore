@@ -209,3 +209,8 @@ next-env.d.ts
 /test-results/
 /playwright-report/
 *.tsbuildinfo
+
+# Firebase CLI
+/.firebase/
+firebase-debug.log
+database-debug.log

@@ -4,6 +4,7 @@ import { Button, PageShell } from '@/ui/components';
 export interface DawnScreenProps {
   /** Names of the locked-in victims. */
   victims: string[];
+  /** True while a reveal is being written: REVEAL ignores repeat taps and Undo lock is off. */
   busy: boolean;
   error: string | null;
   onReveal: () => void;

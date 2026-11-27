@@ -42,7 +42,7 @@ The user paused the build during feature 4.
 | 1 | Project scaffold | Features → 1 | no | security-checked (done) |
 | 2 | Game rules core | Features → 2 | no | integration-tested (done) |
 | 3 | Room backend interface + memory backend | Features → 3 | no | integration-tested (done) |
-| 4 | Firebase backend + security rules | Features → 4 | no | integration-tested; live check pending |
+| 4 | Firebase backend + security rules | Features → 4 | no | integration-tested; live check passed 2026-11-27 |
 | 5 | Start and join screens | Features → 5 | yes | integration-tested (done) |
 | 6 | Host setup and lobby | Features → 6 | yes | integration-tested (done) |
 | 7 | Deal and player card | Features → 7 | yes | integration-tested (done) |
@@ -562,3 +562,57 @@ No regressions against the baseline, which had no suite.
 - The three needs-validation leads.
 - The three deferred audit gaps.
 - Features 4–11 are uncommitted.
+
+## Live Firebase check, 2026-11-27
+
+- **Setup:** the user created Firebase project `kk-werewolf-kill-or-be-killed`, enabled Anonymous Auth, created the Realtime Database (`…-default-rtdb.firebaseio.com`, US) and published `database.rules.json`. `.env.local` is complete and git-ignored.
+- **`npm run test:live`:** 14 passed across 2 files, run twice.
+  - `rules.live.test.ts` (10 cases):
+    - A stranger can't claim a taken code.
+    - Players join alive and can only change their own name, ready and connected.
+    - Night, spares, other cards, events and the room list are hidden from players.
+    - Players can't undie, cheat or become host.
+    - Late joins are refused, and malformed host writes are rejected.
+    - The host can remove players and delete the room.
+  - `rooms.live.test.ts` (4 cases): three rooms with a host and 5 players each play at the same time, with unique codes, no crossover in deal, night or reveal, and cross-room reads and writes refused.
+- **Still open:** the three audit needs-validation leads. Lead 1 (a former host's listener surviving handover) can now be checked against this project if wanted.
+
+## Live game through the Firebase build, 2026-11-27
+
+A scripted real game ran against the production build and project `kk-werewolf-kill-or-be-killed`: a host and 5 players, each in its own browser context with its own anonymous uid. It exposed two bugs that the instant in-memory backend could not show.
+
+1. **Early Join refused.**
+   - **Symptom:** tapping "Join the village" before sign-in and room load finished (about 0.9s) failed with "Still connecting. Try again in a moment."
+   - **Fix** (`src/join/JoinFlow.tsx`, `src/join/NameStep.tsx`): Join shows "Connecting…" and is disabled until the room has loaded, and the join waits for `whenLoaded()`.
+   - **Regression test:** `tests/unit/join/connecting.test.tsx`. It was seen failing before the fix.
+2. **REVEAL tap silently dropped**, intermittently (2 of 6 runs).
+   - **Cause:** Firebase applies the host's own writes to the host's view at once, so the Dawn screen appeared while "Lock in" was still being written. A REVEAL tap in that window hit the shared `busy` guard and was discarded, so nothing was sent and the host was stuck. Database frames confirmed the lock-in write was acknowledged and no reveal write was ever sent.
+   - **Fix** (`src/host/dashboard/HostGame.tsx`, `DawnScreen.tsx`): the host tracks in-flight actions per type. Taps for a different action are passed on, because `room.dispatch` already runs actions in order. Only a repeat of an in-flight action is ignored.
+   - **Regression test:** `tests/unit/dashboard/hostGameQueue.test.tsx`. It was seen failing with the fix removed, then passing.
+- **Results after the fixes:**
+  - `npm test`: 339 passed.
+  - `npm run test:integration`: 19 passed.
+  - `npm run test:live`: 14 passed (run earlier).
+  - 5 of 5 consecutive real games passed with no page errors. The kill tick box updates about 90–100 ms after a tap.
+  - Evidence: `production/qa/evidence/firebase-live/1..6`.
+- **Leftover rooms:** debugging runs that failed mid-game left orphan rooms in the database (codes such as 6R9E, 6F82, 3AGS, 6MT3, 793B). Their hosts' sessions are gone, so only the project owner can delete them, from the Realtime Database console.
+
+## Deploy config (Firebase Hosting), 2026-11-27, not yet deployed
+
+- **`firebase.json`:**
+  - Hosting serves `out/` with `cleanUrls`, so `/join` maps to `join.html`, and the database rules come from `database.rules.json`.
+  - Headers:
+    - `frame-ancestors 'none'` and `X-Frame-Options: DENY`, which close the audit's framing note.
+    - `nosniff`, a strict referrer policy, and a Permissions-Policy that allows the camera on this site only, for QR scanning.
+    - Immutable caching for `/_next/static`, and `no-cache` for HTML.
+- **`.firebaserc`:** default project `kk-werewolf-kill-or-be-killed`.
+- **`scripts/check-deploy.mjs`** (`npm run deploy:check`) refuses to publish unless `out/`:
+  - has every page;
+  - is a Firebase build containing this project's database URL;
+  - has no memory-backend marker (this closes the audit note on the test build sharing `out/`);
+  - matches the project in `.firebaserc`;
+  - is not older than `src/` or `public/`.
+- **Check verified:** it blocks the memory build, blocks a stale build, and passes a fresh live build.
+- **`npm run deploy`** runs the build, then the check, then `npx firebase-tools@15.37.0 deploy --only hosting,database`.
+- **`.gitignore`** now covers `/.firebase/` and the debug logs.
+- **Not done:** the user must run `npx firebase-tools login` once. The deploy itself waits for the user's explicit go-ahead.

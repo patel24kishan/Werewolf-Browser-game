@@ -50,15 +50,20 @@ export function JoinFlow() {
   );
 }
 
-function NameScreen({ code, onBack, onJoined }: { code: string; onBack: () => void; onJoined: () => void }) {
+/** The name step wired to the room (exported for tests). */
+export function NameScreen({ code, onBack, onJoined }: { code: string; onBack: () => void; onJoined: () => void }) {
   const { room, view, error } = useRoom(code);
   let notice = error;
   if (!notice && view?.loaded && !(view.state && view.myId in view.state.players)) {
     notice = joinBlocker(code, view.exists, view.state?.meta.status);
   }
+  // On a real backend, signing in and loading the room takes a moment: keep Join
+  // off (showing "Connecting…") until the room has loaded, instead of refusing taps.
+  const connecting = error === null && !(room && view?.loaded);
 
   async function onJoin(name: string): Promise<JoinResult> {
     if (!room) return { ok: false, message: 'Still connecting. Try again in a moment.' };
+    await room.whenLoaded();
     const result = await room.dispatch({ type: 'join', name });
     if (result.ok || result.error.code === 'already-joined') {
       onJoined();
@@ -67,5 +72,7 @@ function NameScreen({ code, onBack, onJoined }: { code: string; onBack: () => vo
     return { ok: false, message: joinErrorMessage(result.error, code) };
   }
 
-  return <NameStep code={code} onBack={onBack} onJoin={onJoin} disabled={notice !== null} notice={notice} />;
+  return (
+    <NameStep code={code} onBack={onBack} onJoin={onJoin} disabled={notice !== null} notice={notice} connecting={connecting} />
+  );
 }
