@@ -10,6 +10,7 @@
     "build:memory": "node scripts/build-memory.mjs",
     "test": "vitest run",
     "test:integration": "playwright test",
+    "test:live": "vitest run --config vitest.live.config.ts",
     "lint": "eslint src tests",
     "typecheck": "tsc --noEmit"
   },

@@ -18,3 +18,22 @@ export class BackendError extends Error {
     this.code = code;
   }
 }
+
+/**
+ * Thrown by `getBackend` when the Firebase backend is selected but its web
+ * config is incomplete. `missing` lists the environment variable names (never
+ * their values), so the UI can show a clear setup message.
+ */
+export class BackendNotConfiguredError extends Error {
+  /** Names of the missing `NEXT_PUBLIC_FIREBASE_*` variables. */
+  readonly missing: readonly string[];
+
+  constructor(missing: readonly string[]) {
+    super(
+      `Firebase is not configured: missing ${missing.join(', ')}. ` +
+        'Add them to .env.local (see .env.local.example) and rebuild, or set NEXT_PUBLIC_BACKEND=memory.',
+    );
+    this.name = 'BackendNotConfiguredError';
+    this.missing = Object.freeze([...missing]);
+  }
+}

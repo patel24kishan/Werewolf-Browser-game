@@ -1,7 +1,5 @@
+import { StartScreen } from '@/start/StartScreen';
+
 export default function Home() {
-  return (
-    <main>
-      <h1>Werewolf</h1>
-    </main>
-  );
+  return <StartScreen />;
 }

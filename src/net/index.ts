@@ -1,9 +1,10 @@
 /**
  * Werewolf Companion networking: the `RoomBackend` interface, the in-memory
- * backend, room codes, room creation and the room service.
+ * and Firebase backends, room codes, room creation and the room service.
  */
 export type { DisconnectHandle, RoomBackend, Unsubscribe } from './RoomBackend';
-export { BackendError, type BackendErrorCode } from './errors';
+export { BackendError, BackendNotConfiguredError, type BackendErrorCode } from './errors';
+export { FirebaseBackend, type FirebaseBackendOptions, type FirebaseConfig } from './FirebaseBackend';
 export {
   DEFAULT_CHANNEL_NAME,
   GUEST_ID_STORAGE_KEY,
@@ -50,4 +51,4 @@ export {
 } from './paths';
 export { buildRoomState, diffRoomState, type RawRoom } from './roomData';
 export { parsePath, type JsonValue } from './tree';
-export { getBackend } from './backend';
+export { getBackend, readFirebaseConfig } from './backend';

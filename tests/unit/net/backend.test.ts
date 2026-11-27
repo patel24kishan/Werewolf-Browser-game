@@ -9,10 +9,16 @@ afterEach(() => {
 });
 
 describe('getBackend', () => {
-  it('throws a clear error until the Firebase backend exists', async () => {
+  it('throws a clear error when Firebase is selected but not configured', async () => {
     delete process.env.NEXT_PUBLIC_BACKEND;
-    const { getBackend } = await import('@/net/backend');
-    expect(() => getBackend()).toThrow('Firebase backend not configured yet');
+    const saved = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+    delete process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+    try {
+      const { getBackend } = await import('@/net/backend');
+      expect(() => getBackend()).toThrow('Firebase is not configured');
+    } finally {
+      if (saved !== undefined) process.env.NEXT_PUBLIC_FIREBASE_API_KEY = saved;
+    }
   });
 
   it('returns one shared MemoryBackend in memory mode', async () => {
